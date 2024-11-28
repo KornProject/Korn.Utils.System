@@ -5,6 +5,8 @@ VisualStudioVersion = 17.12.35506.116 d17.12
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Korn.Utils.System", "Korn.Utils.System\Korn.Utils.System.csproj", "{568C75BB-7C9A-4A11-BC7A-3EB743388046}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Korn.Utils.System.netframework", "Korn.Utils.System.netframework\Korn.Utils.System.netframework.csproj", "{815FB6F3-B2A7-4523-B372-7998D61F36D5}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +23,14 @@ Global
 		{568C75BB-7C9A-4A11-BC7A-3EB743388046}.Release|Any CPU.Build.0 = Release|Any CPU
 		{568C75BB-7C9A-4A11-BC7A-3EB743388046}.Release|x64.ActiveCfg = Release|x64
 		{568C75BB-7C9A-4A11-BC7A-3EB743388046}.Release|x64.Build.0 = Release|x64
+		{815FB6F3-B2A7-4523-B372-7998D61F36D5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{815FB6F3-B2A7-4523-B372-7998D61F36D5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{815FB6F3-B2A7-4523-B372-7998D61F36D5}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{815FB6F3-B2A7-4523-B372-7998D61F36D5}.Debug|x64.Build.0 = Debug|Any CPU
+		{815FB6F3-B2A7-4523-B372-7998D61F36D5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{815FB6F3-B2A7-4523-B372-7998D61F36D5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{815FB6F3-B2A7-4523-B372-7998D61F36D5}.Release|x64.ActiveCfg = Release|Any CPU
+		{815FB6F3-B2A7-4523-B372-7998D61F36D5}.Release|x64.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
