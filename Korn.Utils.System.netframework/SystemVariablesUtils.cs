@@ -9,6 +9,10 @@ namespace Korn.Utils.System
     {
         readonly static EnvironmentVariableTarget Target = EnvironmentVariableTarget.Machine;
 
+        public const string KORN_PATH_VAR = "KORN_PATH";
+
+        public static string GetKornPath() => Environment.GetEnvironmentVariable(KORN_PATH_VAR, Target);
+
         public static string GetVariable(string name) => Environment.GetEnvironmentVariable(name, Target);
         public static void SetVariable(string name, string value) => Environment.SetEnvironmentVariable(name, value, Target);
 
