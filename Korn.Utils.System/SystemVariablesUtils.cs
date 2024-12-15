@@ -1,6 +1,6 @@
 ﻿using System.Text;
 
-namespace Korn.Utils.System;
+namespace Korn.Utils;
 
 public static class SystemVariablesUtils
 {

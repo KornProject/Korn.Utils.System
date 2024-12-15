@@ -1,6 +1,6 @@
 ﻿using System.Diagnostics;
 
-namespace Korn.Utils.System;
+namespace Korn.Utils;
 public partial class ExternalProcessManager : IDisposable
 {
     public ExternalProcessManager(Process process)

@@ -1,6 +1,6 @@
 ﻿using System.Diagnostics;
 
-namespace Korn.Utils.System;
+namespace Korn.Utils;
 public static class ServiceControl
 {
     public static void Execute(string arguments)

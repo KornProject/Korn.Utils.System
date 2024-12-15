@@ -1,6 +1,6 @@
 ﻿using System.Diagnostics;
 
-namespace Korn.Utils.System;
+namespace Korn.Utils;
 public partial class ExternalProcessManager
 {
     const int THREAD_STATE_ACCESS = 0x0002;
