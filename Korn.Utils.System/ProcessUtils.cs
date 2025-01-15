@@ -16,6 +16,7 @@ public static class ProcessUtils
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public static Process GetParentProcess(int processID) => Process.GetProcessById(Interop.GetParentProcessId(processID));
 
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public static Process? GetProcessByID(int processID)
     {
         try
