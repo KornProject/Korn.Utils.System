@@ -1,4 +1,5 @@
-﻿using System.Runtime.InteropServices;
+﻿using System;
+using System.Runtime.InteropServices;
 
 unsafe static class Interop
 {
@@ -6,38 +7,46 @@ unsafe static class Interop
     const string ntdll = "ntdll";
 
     [DllImport(kernel)] public static extern 
-        nint OpenProcess(nint desiredAccess, bool inheritHandle, int processID);
-
-    [DllImport(kernel)] public static extern 
-        nint OpenThread(nint desiredAccess, bool inheritHandle, int threadID);
-
-    [DllImport(kernel)] public static extern 
-        bool SuspendThread(nint thread);
-
-    [DllImport(kernel)] public static extern 
-        int ResumeThread(nint thread);
+        IntPtr OpenProcess(IntPtr desiredAccess, bool inheritHandle, int processID);
 
     [DllImport(kernel)] public static extern
-        bool CloseHandle(nint handle);
+        IntPtr OpenThread(IntPtr desiredAccess, bool inheritHandle, int threadID);
+
+    [DllImport(kernel)] public static extern 
+        bool SuspendThread(IntPtr thread);
+
+    [DllImport(kernel)] public static extern 
+        int ResumeThread(IntPtr thread);
+
+    [DllImport(kernel)] public static extern
+        bool CloseHandle(IntPtr handle);
 
     [DllImport(ntdll)] static extern
-        uint NtQueryInformationProcess(nint processHandle, int processInformationClass, void* processInformation, int processInformationLength, nint* returnLength);
+        uint NtQueryInformationProcess(IntPtr processHandle, int processInformationClass, void* processInformation, int processInformationLength, IntPtr* returnLength);
 
     [StructLayout(LayoutKind.Sequential)]
-    record struct PROCESS_BASIC_INFORMATION(int ExitStatus, nint PebBaseAddress, ulong AffinityMask, nint BasePriority, nint UniqueProcessId, nint InheritedFromUniqueProcessId);
+    struct PROCESS_BASIC_INFORMATION
+    {
+        public int ExitStatus;
+        public IntPtr PebBaseAddress;
+        public ulong AffinityMask;
+        public IntPtr BasePriority;
+        public IntPtr UniqueProcessID;
+        public IntPtr InheritedFromUniqueProcessID;
+    }
 
     public static int GetParentProcessId(int processID)
     {
         const int ProcessBasicInformation = 0;
-        const nint PROCESS_QUERY_INFORMATION = 0x0400;
+        const int PROCESS_QUERY_INFORMATION = 0x0400;
 
-        var processHandle = OpenProcess(PROCESS_QUERY_INFORMATION, false, processID);
+        var processHandle = OpenProcess((IntPtr)PROCESS_QUERY_INFORMATION, false, processID);
 
         PROCESS_BASIC_INFORMATION pbi;
-        nint writtenLength;
+        IntPtr writtenLength;
         NtQueryInformationProcess(processHandle, ProcessBasicInformation, &pbi, sizeof(PROCESS_BASIC_INFORMATION), &writtenLength);
 
         CloseHandle(processHandle);
-        return (int)pbi.InheritedFromUniqueProcessId;
+        return (int)pbi.InheritedFromUniqueProcessID;
     }
 }

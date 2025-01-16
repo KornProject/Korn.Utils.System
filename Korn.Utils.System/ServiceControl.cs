@@ -1,17 +1,19 @@
 ﻿using System.Diagnostics;
 
-namespace Korn.Utils;
-public static class ServiceControl
+namespace Korn.Utils
 {
-    public static void Execute(string arguments)
+    public static class ServiceControl
     {
-        var startInfo = new ProcessStartInfo()
+        public static void Execute(string arguments)
         {
-            WindowStyle = ProcessWindowStyle.Hidden,
-            FileName = "sc.exe",
-            Arguments = arguments
-        };
+            var startInfo = new ProcessStartInfo()
+            {
+                WindowStyle = ProcessWindowStyle.Hidden,
+                FileName = "sc.exe",
+                Arguments = arguments
+            };
 
-        Process.Start(startInfo);
+            Process.Start(startInfo);
+        }
     }
 }

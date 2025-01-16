@@ -1,35 +1,38 @@
-﻿using System.Diagnostics;
+﻿using System;
+using System.Diagnostics;
 
-namespace Korn.Utils;
-public partial class ExternalProcessManager
+namespace Korn.Utils 
 {
-    const int THREAD_STATE_ACCESS = 0x0002;
-
-    public void SuspendThread(ProcessThread thread)
+    public partial class ExternalProcessManager
     {
-        var threadHandle = Interop.OpenThread(THREAD_STATE_ACCESS, false, thread.Id);
+        const int THREAD_STATE_ACCESS = 0x0002;
 
-        Interop.SuspendThread(threadHandle);
-        Interop.CloseHandle(threadHandle);
-    }
+        public void SuspendThread(ProcessThread thread)
+        {
+            var threadHandle = Interop.OpenThread((IntPtr)THREAD_STATE_ACCESS, false, thread.Id);
 
-    public void ResumeThread(ProcessThread thread)
-    {
-        var threadHandle = Interop.OpenThread(THREAD_STATE_ACCESS, false, thread.Id);
+            Interop.SuspendThread(threadHandle);
+            Interop.CloseHandle(threadHandle);
+        }
 
-        Interop.ResumeThread(threadHandle);
-        Interop.CloseHandle(threadHandle);
-    }
+        public void ResumeThread(ProcessThread thread)
+        {
+            var threadHandle = Interop.OpenThread((IntPtr)THREAD_STATE_ACCESS, false, thread.Id);
 
-    public void SuspendProcess()
-    {
-        foreach (ProcessThread thread in Process.Threads)
-            SuspendThread(thread);
-    }
+            Interop.ResumeThread(threadHandle);
+            Interop.CloseHandle(threadHandle);
+        }
 
-    public void ResumeProcess()
-    {
-        foreach (ProcessThread thread in Process.Threads)
-            ResumeThread(thread);
+        public void SuspendProcess()
+        {
+            foreach (ProcessThread thread in Process.Threads)
+                SuspendThread(thread);
+        }
+
+        public void ResumeProcess()
+        {
+            foreach (ProcessThread thread in Process.Threads)
+                ResumeThread(thread);
+        }
     }
 }
