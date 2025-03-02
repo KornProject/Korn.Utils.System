@@ -25,7 +25,7 @@ namespace Korn.Utils
             {
                 Process.OutputDataReceived += (s, e) =>
                 {
-                    if (!string.IsNullOrEmpty(e.Data))
+                    if (e.Data != null)
                         outputHandler(e.Data);
                 };
             }
@@ -38,5 +38,7 @@ namespace Korn.Utils
         }
 
         public readonly Process Process;
+
+        public void WriteLine(string line) => Process.StandardInput.WriteLine(line);
     }
 }
