@@ -21,6 +21,9 @@ unsafe static class Interop
     [DllImport(kernel)] public static extern
         bool CloseHandle(IntPtr handle);
 
+    [DllImport(kernel)] public static extern
+        bool GetExitCodeProcess(IntPtr handle, out uint exitCode);
+
     [DllImport(ntdll)] static extern
         uint NtQueryInformationProcess(IntPtr processHandle, int processInformationClass, void* processInformation, int processInformationLength, IntPtr* returnLength);
 

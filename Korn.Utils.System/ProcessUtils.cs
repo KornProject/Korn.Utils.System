@@ -1,4 +1,5 @@
-﻿using System.Diagnostics;
+﻿using System;
+using System.Diagnostics;
 using System.Runtime.CompilerServices;
 
 namespace Korn.Utils 
@@ -29,5 +30,8 @@ namespace Korn.Utils
                 return null;
             }
         }
+
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public static bool IsProcessExists(string processName) => Process.GetProcessesByName(processName).Length > 0;
     }
 }

@@ -16,6 +16,12 @@ namespace Korn.Utils
         public static void AddVariable(string name, string value) => SetVariable(name, value);
         public static void DeleteVariable(string name) => SetVariable(name, null);
 
+        public static bool IsVariableTrue(string name)
+        {
+            var variable = GetVariable(name);
+            return variable != null && (variable == "1" || variable.Equals("true", StringComparison.OrdinalIgnoreCase));
+        }
+
         public static void AppendVariableValue(string name, string value)
         {
             var rawVariable = GetVariable(name);

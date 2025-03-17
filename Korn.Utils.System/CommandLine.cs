@@ -3,7 +3,7 @@ using System.Diagnostics;
 
 namespace Korn.Utils
 {
-    public class CommandLine
+    public class CommandLine : IDisposable
     {
         public CommandLine(string host = "cmd", Action<string> outputHandler = null, Action exitHandler = null, string arguments = null, bool isHidden = true)
         {
@@ -40,5 +40,9 @@ namespace Korn.Utils
         public readonly Process Process;
 
         public void WriteLine(string line) => Process.StandardInput.WriteLine(line);
+
+        public void Terminate() => Process.Kill();
+
+        public void Dispose() => Terminate();
     }
 }
