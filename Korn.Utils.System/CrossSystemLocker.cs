@@ -9,7 +9,7 @@ namespace Korn.Utils.System
 
         Mutex mutex;
 
-        public void Unlock() => mutex.Dispose();
+        public void Unlock() => mutex?.Dispose();
 
         public static bool TryCreateLock(string name, out CrossSystemLocker locker)
         {
@@ -38,8 +38,9 @@ namespace Korn.Utils.System
             return locker;
         }
 
-        static string GlobalizeName(string name) => $"Korn-{name}";
+        static string GlobalizeName(string name) => $"KornMutex-{name}";
 
+        #region IDisposable
         bool disposed;
         public void Dispose()
         {
@@ -50,5 +51,6 @@ namespace Korn.Utils.System
             mutex.ReleaseMutex();
             mutex.Dispose();
         }
+        #endregion
     }
 }
