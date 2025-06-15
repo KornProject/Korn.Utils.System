@@ -24,7 +24,7 @@ namespace Korn.Utils
                 Arguments = arguments
             };
 
-            Process.Start(startInfo);
+            global::System.Diagnostics.Process.Start(startInfo);
         }
     }
 }

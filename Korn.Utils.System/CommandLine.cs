@@ -7,7 +7,7 @@ namespace Korn.Utils
     {
         public CommandLine(string host = "cmd", Action<string> outputHandler = null, Action exitHandler = null, string arguments = null, bool isHidden = true)
         {
-            Process = new Process()
+            Process = new global::System.Diagnostics.Process()
             {
                 StartInfo = new ProcessStartInfo()
                 {
@@ -37,7 +37,7 @@ namespace Korn.Utils
             Process.BeginOutputReadLine();
         }
 
-        public readonly Process Process;
+        public readonly global::System.Diagnostics.Process Process;
 
         public void WriteLine(string line) => Process.StandardInput.WriteLine(line);
 
